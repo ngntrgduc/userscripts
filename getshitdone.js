@@ -11,59 +11,40 @@
 (function() {
     'use strict';
 
-	function getQuote() {
-        let quotes = ["GET SHIT DONE", "KEEP CALM", "FUCKED-UP", "NOT TODAY"];
-		return quotes[Math.floor(Math.random() * quotes.length)];
+	// General logic
+function getshitdone() {
+    document.head.innerHTML = `
+        <style>
+        html {   
+            background-color: #1f1f1f;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100pt;
+        }
+        </style>`;
+    document.body.innerHTML = `<div>👁️</div>`;
+    // Or you can add motivational quotes
+    // const quotes = [
+    //     'KEEP CALM', // Add more here... 
+    // ];
+    // const i = Math.floor(Math.random() * quotes.length);
+    // document.body.innerHTML = ''; // Clear existing content
+    // document.body.innerHTML = `<div>${quotes[i]}</div>`
 	}
 
-	function getShitDone() {
-		document.head.innerHTML = `
-    <style>
-    html {
-        background-color: black;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 60pt;
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    </style>
-    `
-		document.body.innerHTML = `<div>` + getQuote() + `</div>`;
+	function inBlockRange(startHour, endHour) {
+		// Block if between startHour and endHour
+		// Hour range from 0 to 23
+		const hour = new Date().getHours();
+		return hour >= startHour && hour < endHour
 	}
 
-    const today = new Date();
-	let hour = today.getHours(); // From 0 to 23
-	let date = today.getDate(); // From 1 to 31
-	// [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	let day = today.getDay(); // Sunday - Saturday : 0 - 6
 
-	// From 10:00 PM - 06:00 AM, no more procrastination
-	// if (hour == 22 || (hour >= 0 && hour <= 6)) {
-
-	// Only using at 12:00 AM
-	// if (hour != 12) {
-
-	// Only using on "even" date like 2/12, 4/12,..., "odd" dates will be blocked
-	// There are 179 even date, take ~49.04% of the year
-    //if (date % 2 != 0) {
-
-	// Only block when Saturday (6) and Sunday (0)
-	// Monay, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-	//   1       2         3          4       5         6        0
-	//if (day == 0 || day == 6) {
-    if ([0, 1, 2, 3, 4, 6].includes(day)) {
-		getShitDone();
-	} else {
-		// Block from 1:00 AM - 11:00 AM, 1:00 PM - 23:00 PM
-		// Only use for 11AM, 12PM
-        if (
-			(hour >= 1 && hour < 11) ||
-			(hour > 12 && hour < 24)
-		) {
-		    getShitDone();
-		}
-	}
+	if (inBlockRange(0, 6)) getshitdone(); // Sleep
+	if (inBlockRange(9, 11)) getshitdone(); // Morning
+	// if (inBlockRange(12, 13)) getshitdone(); // Noon
+	if (inBlockRange(13, 17)) getshitdone(); // Afternoon
+	if (inBlockRange(21, 23)) getshitdone(); // Evening
 })();
