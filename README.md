@@ -13,3 +13,5 @@ Some personal userscripts, makes life simpler
 - [`mw.js`](/mw.js): Merriam-Webster utils
     - Change between Dictionary/Thesaurus mode when `Tab` key pressed
     - Auto search when double click on vocab
+- [`hackernews.js`](/hackernews.js): Wider width
+- [`arxiv.js`](/arxiv.js): Narrow abstract, easier to read
